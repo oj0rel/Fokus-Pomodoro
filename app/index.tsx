@@ -1,23 +1,46 @@
+import { useState } from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
+const pomodoro = [
+  {
+    id: "focus",
+    initialValue: 25,
+    image: require("./imgs/foco.png"),
+    display: "Foco",
+  },
+  {
+    id: "short",
+    initialValue: 5,
+    image: require("./imgs/descanso_curto.png"),
+    display: "Pausa curta",
+  },
+  {
+    id: "long",
+    initialValue: 15,
+    image: require("./imgs/descanso_longo.png"),
+    display: "Pausa longa",
+  },
+]
+
 export default function Index() {
+
+  const [timerType, setTimerType] = useState(pomodoro[0])
+
   return (
     <View style={styles.container}>
-      <Image source={require("./imgs/foco.png")} />
+      <Image source={timerType.image} />
 
       <View style={styles.actions}>
         <View style={styles.context}>
+          
           <Pressable style={styles.contextButtonActive}>
             <Text style={styles.contextButtonText}>Foco</Text>
           </Pressable>
-          <Pressable>
-            <Text style={styles.contextButtonText}>Pausa Curta</Text>
-          </Pressable>
-          <Pressable>
-            <Text style={styles.contextButtonText}>Pausa Longa</Text>
-          </Pressable>
+          
+
+
         </View>
-        <Text style={styles.timer}>25:00</Text>
+        <Text style={styles.timer}>{timerType.initialValue}</Text>
         <Pressable style={styles.button}>
           <Text style={styles.buttonText}>Começar</Text>
         </Pressable>
@@ -28,7 +51,7 @@ export default function Index() {
           Projeto fictício e sem fins comerciais.
         </Text>
         <Text style={styles.footerText}>
-          Desenvolvido por Aluno.
+          Desenvolvido por Gabriel Santos.
         </Text>
       </View>
 
@@ -50,8 +73,6 @@ const styles = StyleSheet.create({
     borderRadius: 32,
     borderWidth: 2,
     borderColor: '#144480',
-    alignItems: "center",
-    justifyContent: "center",
     width: '80%',
     gap: 32,
   },
@@ -64,6 +85,20 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: '#021123',
     fontSize: 18,
+  },
+  context: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+  },
+  contextButtonActive: {
+    backgroundColor: '#144480',
+    borderRadius: 8,
+  },
+  contextButtonText: {
+    color: '#FFF',
+    fontSize: 12.5,
+    padding: 8,
   },
   timer: {
     fontSize: 54,
@@ -79,15 +114,5 @@ const styles = StyleSheet.create({
     color: '#98A0A8',
     fontSize: 12.5,
     textAlign: "center",
-
-  },
-  context: {
-
-  },
-  contextButtonText: {
-
-  },
-  contextButtonActive: {
-
   },
 })

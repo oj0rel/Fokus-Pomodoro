@@ -33,14 +33,26 @@ export default function Index() {
       <View style={styles.actions}>
         <View style={styles.context}>
           
-          <Pressable style={styles.contextButtonActive}>
-            <Text style={styles.contextButtonText}>Foco</Text>
+          {pomodoro.map(p =>
+
+          <Pressable
+          key={p.id}
+          style={ timerType.id === p.id ? styles.contextButtonActive : null}
+          onPress={() => setTimerType(p)}
+          >
+            <Text style={styles.contextButtonText}>{p.display}</Text>
           </Pressable>
-          
+          )}
 
 
         </View>
-        <Text style={styles.timer}>{timerType.initialValue}</Text>
+        <Text style={styles.timer}>
+          {/* {timerType.initialValue} */}
+          {new Date(timerType.initialValue * 1000).toLocaleTimeString("pt-BR", {
+            minute: "2-digit", second: "2-digit"
+          })}
+        </Text>
+
         <Pressable style={styles.button}>
           <Text style={styles.buttonText}>Começar</Text>
         </Pressable>

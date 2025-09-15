@@ -1,5 +1,7 @@
+import { ActionButton } from "@/components/ActionButton";
+import { FokusButton } from "@/components/FokusButton";
 import { useState } from "react";
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 
 const pomodoro = [
   {
@@ -34,14 +36,21 @@ export default function Index() {
         <View style={styles.context}>
           
           {pomodoro.map(p =>
+            <ActionButton 
+              key={p.id}
+              active={timerType.id === p.id}
+              onPress={() => setTimerType(p)}
+              display={p.display}             
+            
+            />
 
-          <Pressable
-          key={p.id}
-          style={ timerType.id === p.id ? styles.contextButtonActive : null}
-          onPress={() => setTimerType(p)}
-          >
-            <Text style={styles.contextButtonText}>{p.display}</Text>
-          </Pressable>
+          // <Pressable
+          // key={p.id}
+          // style={ timerType.id === p.id ? styles.contextButtonActive : null}
+          // onPress={() => setTimerType(p)}
+          // >
+          //   <Text style={styles.contextButtonText}>{p.display}</Text>
+          // </Pressable>
           )}
 
 
@@ -52,10 +61,7 @@ export default function Index() {
             minute: "2-digit", second: "2-digit"
           })}
         </Text>
-
-        <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>Começar</Text>
-        </Pressable>
+        <FokusButton />
       </View>
 
       <View style={styles.footer}>
@@ -88,29 +94,10 @@ const styles = StyleSheet.create({
     width: '80%',
     gap: 32,
   },
-  button: {
-    backgroundColor: '#B872FF',
-    borderRadius: 32,
-    padding: 8,
-  },
-  buttonText: {
-    textAlign: "center",
-    color: '#021123',
-    fontSize: 18,
-  },
   context: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
-  },
-  contextButtonActive: {
-    backgroundColor: '#144480',
-    borderRadius: 8,
-  },
-  contextButtonText: {
-    color: '#FFF',
-    fontSize: 12.5,
-    padding: 8,
   },
   timer: {
     fontSize: 54,

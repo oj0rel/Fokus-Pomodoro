@@ -1,5 +1,6 @@
 import { ActionButton } from "@/components/ActionButton";
 import { FokusButton } from "@/components/FokusButton";
+import { Timer } from "@/components/Timer";
 import { useState } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 
@@ -41,26 +42,19 @@ export default function Index() {
               active={timerType.id === p.id}
               onPress={() => setTimerType(p)}
               display={p.display}             
-            
             />
-
-          // <Pressable
-          // key={p.id}
-          // style={ timerType.id === p.id ? styles.contextButtonActive : null}
-          // onPress={() => setTimerType(p)}
-          // >
-          //   <Text style={styles.contextButtonText}>{p.display}</Text>
-          // </Pressable>
           )}
 
-
         </View>
+
         <Text style={styles.timer}>
           {/* {timerType.initialValue} */}
           {new Date(timerType.initialValue * 1000).toLocaleTimeString("pt-BR", {
             minute: "2-digit", second: "2-digit"
           })}
         </Text>
+        
+        <Timer />
         <FokusButton />
       </View>
 
@@ -98,12 +92,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
-  },
-  timer: {
-    fontSize: 54,
-    color: '#FFFFFF',
-    fontWeight: "bold",
-    textAlign: "center",
   },
   footer: {
     width: '80%',

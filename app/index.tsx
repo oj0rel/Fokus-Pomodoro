@@ -44,17 +44,11 @@ export default function Index() {
               display={p.display}             
             />
           )}
-
         </View>
 
-        <Text style={styles.timer}>
-          {/* {timerType.initialValue} */}
-          {new Date(timerType.initialValue * 1000).toLocaleTimeString("pt-BR", {
-            minute: "2-digit", second: "2-digit"
-          })}
-        </Text>
-        
-        <Timer />
+        <Timer
+        totalSeconds={timerType.initialValue}
+        />
         <FokusButton />
       </View>
 

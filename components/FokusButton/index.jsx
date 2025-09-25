@@ -1,9 +1,9 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 
-export const FokusButton = () => {
+export const FokusButton = ( { press, title } ) => { //esse press é basicamente um atributo que esse componente vai receber, no index pai
   return (
-    <Pressable style={styles.button}>
-      <Text style={styles.buttonText}>Começar</Text>
+    <Pressable style={styles.button} onPress={press}>
+      <Text style={styles.buttonText}>{ title }</Text>
     </Pressable>
   );
 };
